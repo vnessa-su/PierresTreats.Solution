@@ -39,6 +39,8 @@ namespace PierresTreats.Controllers
     [HttpPost]
     public ActionResult Create(Flavor flavor, int[] treatIds)
     {
+      _db.Flavors.Add(flavor);
+      _db.SaveChanges();
       foreach (int treatId in treatIds)
       {
         bool entryExists = _db.FlavorTreat
@@ -48,7 +50,6 @@ namespace PierresTreats.Controllers
           _db.FlavorTreat.Add(new FlavorTreat() { FlavorId = flavor.FlavorId, TreatId = treatId });
         }
       }
-      _db.Flavors.Add(flavor);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
