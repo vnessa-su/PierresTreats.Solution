@@ -9,6 +9,8 @@
 <h2>@Html.DisplayFor(model => model.Description)</h2>
 
 <div class="container page-content">
+  <p>@Html.DisplayNameFor(model => model.Price): $@Html.DisplayFor(model => model.Price)</p>
+
   <p>Great selection if you're in the mood for:</p>
   @if (@Model.FlavorTreatJoinEntities.Count == 0)
   {
