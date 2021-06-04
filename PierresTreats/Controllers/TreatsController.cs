@@ -42,7 +42,7 @@ namespace PierresTreats.Controllers
       foreach (int flavorId in flavorIds)
       {
         bool entryExists = _db.FlavorTreat
-          .Any(entryExists => entry.FlavorId == flavorId && entry.TreatId == treat.TreatId);
+          .Any(entry => entry.FlavorId == flavorId && entry.TreatId == treat.TreatId);
         if (!entryExists)
         {
           _db.FlavorTreat.Add(new FlavorTreat() { FlavorId = flavorId, TreatId = treat.TreatId });
@@ -105,7 +105,7 @@ namespace PierresTreats.Controllers
       foreach (int flavorId in flavorIds)
       {
         bool entryExists = _db.FlavorTreat
-          .Any(entryExists => entry.FlavorId == flavorId && entry.TreatId == treat.TreatId);
+          .Any(entry => entry.FlavorId == flavorId && entry.TreatId == treat.TreatId);
         if (!entryExists)
         {
           _db.FlavorTreat.Add(new FlavorTreat() { FlavorId = flavorId, TreatId = treat.TreatId });
