@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Template.Models;
+using PierresTreats.Models;
 
-namespace Template
+namespace PierresTreats
 {
   public class Startup
   {
@@ -25,7 +25,7 @@ namespace Template
       services.AddMvc();
 
       services.AddEntityFrameworkMySql()
-        .AddDbContext<TemplateContext>(options => options
+        .AddDbContext<PierresTreatsContext>(options => options
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
     }
 
@@ -40,7 +40,7 @@ namespace Template
       });
 
       app.UseStaticFiles();
-      
+
       app.Run(async (context) =>
       {
         await context.Response.WriteAsync("ERROR - PAGE NOT FOUND");

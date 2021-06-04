@@ -1,12 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace Template.Models
+namespace PierresTreats.Models
 {
-  public class TemplateContext : DbContext
+  public class PierresTreatsContext : DbContext
   {
     public virtual DbSet<Model> Models { get; set; }
 
-    public TemplateContext(DbContextOptions options) : base(options) { }
+    public PierresTreatsContext(DbContextOptions options) : base(options) { }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

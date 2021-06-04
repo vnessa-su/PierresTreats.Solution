@@ -1,17 +1,17 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
-using Template.Models;
+using PierresTreats.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Template.Controllers
+namespace PierresTreats.Controllers
 {
-  public class ModelsController : Controller
+  public class TreatsController : Controller
   {
-    private readonly TemplateContext _db;
+    private readonly PierresTreatsContext _db;
 
-    public ModelsController(TemplateContext db)
+    public TreatsController(PierresTreatsContext db)
     {
       _db = db;
     }
