@@ -1,0 +1,12 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>Are you sure you want to delete @Model.Name?</h1>
+
+@using (Html.BeginForm())
+{
+  <div class="text-center m-5">
+    <input type="submit" value="Delete Flavor" class="btn btn-danger btn-lg my-2" />
+  </div>
+}
