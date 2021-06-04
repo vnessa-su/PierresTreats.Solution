@@ -1,9 +1,16 @@
-<div class="text-center m-5" id="navigationButtons">
-  @Html.ActionLink("Home", "Index", "Home", null, new {@class = "btn btn-secondary btn-lg mx-2 my-1"})
 
-  @Html.ActionLink("List of Treats", "Index", "Treats", null, new {@class = "btn btn-secondary btn-lg mx-2 my-1"})
-  @Html.ActionLink("Add Treat", "Create", "Treats", null, new {@class = "btn btn-secondary btn-lg mx-2 my-1"})
 
-  @Html.ActionLink("List of Flavors", "Index", "Flavors", null, new {@class = "btn btn-secondary btn-lg mx-2 my-1"})
-  @Html.ActionLink("Add Flavor", "Create", "Flavors", null, new {@class = "btn btn-secondary btn-lg mx-2 my-1"})
-</div>
+<nav class="navbar navbar-fixed-top bg-light">
+<div>
+  @Html.ActionLink("Pierre's Bakery", "Index", "Home", null, new {@class = "navbar-brand float-left"})
+
+  @Html.ActionLink("Treats", "Index", "Treats", null, new {@class = "nav-link float-left"})
+  @Html.ActionLink("Add Treat", "Create", "Treats", null, new {@class = "nav-link float-left"})
+
+  @Html.ActionLink("Flavors", "Index", "Flavors", null, new {@class = "nav-link float-left"})
+  @Html.ActionLink("Add Flavor", "Create", "Flavors", null, new {@class = "nav-link float-left"})
+
+  @Html.ActionLink("Log In", "Login", "Account", null, new {@class = "nav-link float-left"})
+  @Html.ActionLink("Log Out", "LogOff", "Account", null, new {@class = "nav-link float-left"})
+  </div>
+</nav>
