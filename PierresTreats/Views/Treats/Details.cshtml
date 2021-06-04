@@ -22,7 +22,12 @@
     @foreach (FlavorTreat join in Model.FlavorTreatJoinEntities)
       {
         <li>
-          @Html.ActionLink($"{join.Flavor.Name}", "Details", "Flavors", new { id = join.Flavor.FlavorId })
+          @using (Html.BeginForm("RemoveFlavor", "Treats"))
+          {
+            @Html.ActionLink($"{join.Flavor.Name}", "Details", "Flavors", new { id = join.Flavor.FlavorId })
+            @Html.Hidden("joinId", @join.FlavorTreatId)
+            <button type="submit" class="fas fa-trash-alt btn" title="Remove Flavor"></button>
+          }
         </li>
       }
     </ul>
