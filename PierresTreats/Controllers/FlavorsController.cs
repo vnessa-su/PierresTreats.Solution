@@ -48,7 +48,7 @@ namespace PierresTreats.Controllers
           _db.FlavorTreat.Add(new FlavorTreat() { FlavorId = flavor.FlavorId, TreatId = treatId });
         }
       }
-      _db.Treats.Add(flavor);
+      _db.Flavors.Add(flavor);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
@@ -87,7 +87,7 @@ namespace PierresTreats.Controllers
     public ActionResult DeleteConfirmed(int id)
     {
       Flavor selectedFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
-      _db.Treats.Remove(selectedFlavor);
+      _db.Flavors.Remove(selectedFlavor);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
