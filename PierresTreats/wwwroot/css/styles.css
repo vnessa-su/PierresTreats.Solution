@@ -1,0 +1,22 @@
+#page-background {
+  background-image: url("../images/bread-ivan-j-long.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+h1,
+.additional-info {
+  font-family: "Love Ya Like A Sister", cursive;
+  color: white;
+  mix-blend-mode: difference;
+  text-align: center;
+}
+
+.page-content {
+  font-family: "Open Sans", sans-serif;
+  background-color: rgba(255, 255, 255, 0.5);
+  min-height: 350px;
+  max-width: 800px;
+  border-radius: 10px;
+  font-size: x-large;
+}
