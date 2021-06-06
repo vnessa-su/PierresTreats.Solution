@@ -1,0 +1,27 @@
+@{
+  Layout = "_Layout";
+}
+
+@using PierresTreats.Models;
+
+<h1>Orders</h1>
+
+<div class="container page-content py-4">
+  @if (@Model.Count == 0)
+  {
+    <h3>No orders have been added!</h3>
+  }
+  else
+  {
+    <ul>
+      @foreach (Order order in Model)
+      {
+        <li>@Html.ActionLink($"Order #{order.OrderId}", "Details", new { id = order.OrderId }) for @order.DeliveryDate.Date.ToString("d")</li>
+      }
+    </ul>
+  }
+</div>
+
+<div class="text-center m-5">
+  @Html.ActionLink("New Order", "Create", "Orders", null, new { @class = "btn btn-secondary btn-lg mx-2 my-1" })
+</div>
