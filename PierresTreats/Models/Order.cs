@@ -13,7 +13,7 @@ namespace PierresTreats.Models
     [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
     public DateTime OrderDate { get; set; }
 
-    [Display(Name = "Desired Delivery Date")]
+    [Display(Name = "Requested Delivery Date")]
     [DataType(DataType.Date)]
     [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
     public DateTime DeliveryDate { get; set; }
