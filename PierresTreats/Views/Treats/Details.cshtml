@@ -6,7 +6,7 @@
 @model PierresTreats.Models.Treat
 
 <h1>@Html.DisplayFor(model => model.Name)</h1>
-<h2>@Html.DisplayFor(model => model.Description)</h2>
+<h2 class="additional-info">@Html.DisplayFor(model => model.Description)</h2>
 
 <div class="container page-content">
   <p>@Html.DisplayNameFor(model => model.Price): $@Html.DisplayFor(model => model.Price)</p>
