@@ -6,7 +6,7 @@
 
 ## Description
 
-MVC pattern web app that associates different treats with different flavors, and vice versa. All treats/flavors and their associations to one another are stored in a MySQL database. Using EF Core Identity, a user can register an account as well as log in/out. A user that is not logged in can still view the treat and flavor lists, and their details, but can not add, delete, or edit anything on the site.
+MVC pattern web app that associates different treats with different flavors, and vice versa. There are also orders that are associated with registered users, containing treats and their quantities in the order. All treats/flavors/orders and their associations to one another are stored in a MySQL database. Using EF Core Identity, a user can register an account as well as log in/out. A user that is not logged in can still view the treat and flavor lists, and their details, but can not add, delete, or edit anything on the site. Only users that are logged in can create/delete/edit/view orders.
 
 ## User Story
 
@@ -21,6 +21,11 @@ MVC pattern web app that associates different treats with different flavors, and
   - Edit information of treats/flavors
   - Add and remove treats/flavors from specific treats/flavors
   - Delete treats/flavors
+  - See list of logged-in user's orders
+  - Add new order to user
+  - Edit order delivery date information
+  - Add and remove treats from specific orders
+  - Delete orders
 
 ## Technologies Used
 
@@ -77,6 +82,8 @@ _Replace `<password>` with your MySQL password_
 ## Known Bugs
 
 - You can add multiple treats and flavors that are named the same
+- Adding treats to an order where it already exists only adds to the previous quantity
+- You can only delete all of a treat from the order, can't just reduce the quantity
 
 ## Contact Information
 
