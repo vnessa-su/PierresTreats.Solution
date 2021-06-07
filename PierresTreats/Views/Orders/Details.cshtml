@@ -1,0 +1,42 @@
+@{
+  Layout = "_Layout";
+}
+
+@using PierresTreats.Models
+@model PierresTreats.Models.Order
+
+<h1>Order #@Html.DisplayFor(model => model.OrderId)</h1>
+
+<div class="container page-content">
+  <h2>@Html.DisplayNameFor(model => model.DeliveryDate): @Html.DisplayFor(model => model.DeliveryDate)</h2>
+
+  @if (@Model.OrderTreatJoinEntities.Count == 0)
+  {
+    <h5>No Treats Added</h5>
+  }
+  else
+  {
+    <ul>
+    @foreach (OrderTreat join in Model.OrderTreatJoinEntities)
+      {
+        <li>
+          @using (Html.BeginForm("RemoveTreat", "Orders"))
+          {
+            @Html.ActionLink($"{join.Treat.Name}", "Details", "Treats", new { id = join.Treat.TreatId })
+            @String.Format(" x{0} - {1:C}", join.TreatQuantity, join.Treat.Price * join.TreatQuantity)
+            @Html.Hidden("joinId", @join.OrderTreatId)
+            <button type="submit" class="fas fa-trash-alt btn" title="Remove Treat"></button>
+          }
+        </li>
+      }
+    </ul>
+
+    <p>@String.Format("Total: {0:C}", Model.GetOrderTotal())</p>
+  }
+</div>
+
+<div class="text-center m-5">
+  @Html.ActionLink("Add Treat", "AddTreat", new { id = Model.OrderId }, new { @class = "btn btn-secondary btn-lg mx-2 my-1" })
+  @Html.ActionLink("Edit Order", "Edit", new { id = Model.OrderId }, new { @class = "btn btn-secondary btn-lg mx-2 my-1" })
+  @Html.ActionLink("Cancel Order", "Delete", new { id = Model.OrderId }, new { @class = "btn btn-secondary btn-lg mx-2 my-1" })
+</div>
