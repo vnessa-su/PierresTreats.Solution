@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PierresTreats.Models;
 using System.Collections.Generic;
@@ -38,20 +37,19 @@ namespace PierresTreats.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create(Order order, int[] treatIds)
+    public async Task<ActionResult> Create(Order order, int[] treatIds, int[] treatQuantities)
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
       order.User = currentUser;
       _db.Orders.Add(order);
       _db.SaveChanges();
-      foreach (int treatId in treatIds)
+      for (int i = 0; i < treatIds.Length; i++)
       {
-        bool entryExists = _db.OrderTreat
-          .Any(entry => entry.OrderId == order.OrderId && entry.TreatId == treatId);
-        if (!entryExists)
+        if (treatQuantities[i] != 0)
         {
-          _db.OrderTreat.Add(new OrderTreat() { OrderId = order.OrderId, TreatId = treatId });
+          _db.OrderTreat.Add(new OrderTreat()
+          { OrderId = order.OrderId, TreatId = treatIds[i], TreatQuantity = treatQuantities[i] });
         }
       }
       _db.SaveChanges();
@@ -104,15 +102,25 @@ namespace PierresTreats.Controllers
     }
 
     [HttpPost]
-    public ActionResult AddTreat(Order order, int[] treatIds)
+    public ActionResult AddTreat(Order order, int[] treatIds, int[] treatQuantities)
     {
-      foreach (int treatId in treatIds)
+      for (int i = 0; i < treatIds.Length; i++)
       {
-        bool entryExists = _db.OrderTreat
-          .Any(entry => entry.OrderId == order.OrderId && entry.TreatId == treatId);
-        if (!entryExists)
+        if (treatQuantities[i] != 0)
         {
-          _db.OrderTreat.Add(new OrderTreat() { OrderId = order.OrderId, TreatId = treatId });
+          bool entryExists = _db.OrderTreat
+            .Any(entry => entry.OrderId == order.OrderId && entry.TreatId == treatIds[i]);
+          if (!entryExists)
+          {
+            _db.OrderTreat.Add(new OrderTreat() { OrderId = order.OrderId, TreatId = treatIds[i], TreatQuantity = treatQuantities[i] });
+          }
+          else
+          {
+            OrderTreat joinEntry = _db.OrderTreat.FirstOrDefault(entry => entry.OrderId == order.OrderId && entry.TreatId == treatIds[i]);
+            joinEntry.TreatQuantity += treatQuantities[i];
+            _db.Entry(order).State = EntityState.Modified;
+
+          }
         }
       }
       _db.SaveChanges();
