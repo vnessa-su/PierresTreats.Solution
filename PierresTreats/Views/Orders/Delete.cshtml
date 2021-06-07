@@ -1,0 +1,12 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>Are you sure you want to cancel Order #@Model.OrderId?</h1>
+
+@using (Html.BeginForm())
+{
+  <div class="text-center m-5">
+    <input type="submit" value="Cancel Order" class="btn btn-danger btn-lg my-2" />
+  </div>
+}
