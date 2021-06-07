@@ -1,0 +1,45 @@
+@{
+  Layout = "_Layout";
+}
+
+@using PierresTreats.Models
+@model PierresTreats.Models.Order
+
+<h1>Start New Order</h1>
+
+<div class="container page-content">
+  @using (Html.BeginForm())
+  {
+    <div class="form-group form-inline">
+      @Html.LabelFor(model => model.DeliveryDate, new{@class = "col-sm-5 col-form-label"})
+      @Html.TextBoxFor(model => model.DeliveryDate, new {@class = "form-control", required="required", type="date"})
+    </div>
+
+    <div>
+      <p>Treat Options:</p>
+      @if (@ViewBag.Treats.Count == 0)
+      {
+        <p>No Treat Selections Added</p>
+      }
+      else
+      {
+        <ul>
+          @foreach (Treat treat in ViewBag.Treats)
+          {
+            <li>
+              @Html.Hidden("treatIds", @treat.TreatId)
+              <div class="row mx-3 my-1">
+                @Html.TextBox("treatQuantities", 0, new { @class="form-control quantity-input mx-3", type="number" })
+                @String.Format("{0} - {1:C}", treat.Name, treat.Price)
+              </div>
+            </li>
+          }
+        </ul>
+      }
+    </div>
+
+    <div class="text-center my-3">
+      <input type="submit" value="Add" class="btn btn-primary btn-lg" />
+    </div>
+  }
+</div>
