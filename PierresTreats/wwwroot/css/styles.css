@@ -19,6 +19,7 @@ h1,
   max-width: 800px;
   border-radius: 10px;
   font-size: x-large;
+  padding: 20px;
 }
 
 #link-header {
@@ -28,4 +29,8 @@ h1,
   mix-blend-mode: difference;
   text-shadow: 1px 1px black;
   font-size: large;
+}
+
+.quantity-input {
+  max-width: 75px;
 }
